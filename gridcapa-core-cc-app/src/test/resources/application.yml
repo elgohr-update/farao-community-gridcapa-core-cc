@@ -1,0 +1,62 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: farao
+    password: farao
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties.hibernate.temp.use_jdbc_metadata_defaults: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    template:
+      reply-timeout: 900000000
+minio:
+  default-bucket: "rao-integration-data"
+  outputs-bucket: "rao-integration-outputs"
+  access:
+    name: minioadmin
+    secret: minioadmin
+  url: http://localhost:9000/
+rao-runner-server:
+  amqp:
+    client-app-id: rao-integration
+    expiration: 5400000 # 1h30min (90*60*1000), same as time-out
+      # take it quite large, as rao-runner might not prefetch more than one rao-request. Rao-request
+    # must therefore stay in queue until a rao-runner is free, or until the time-out is reached
+    queue-name: raoi-request-queue
+
+rao-integration:
+  async-time-out: 5400000 # 1h30min (90*60*1000)
+  url:
+    whitelist:
+      - http://localhost:9000
+  inputs-business-types:
+    request: "F302"
+    cgms: "F119"
+    crac: "F301"
+    glsk: "F319"
+    refprog: "F120"
+    virtualhubs: "F327"
+  filenames:
+    request: "(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})-F302-v(?<version>[0-9])-17XTSO-CS------W-to-22XCORESO------S.xml"
+    cgms: "(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})-F119-v(?<version>[0-9])-17XTSO-CS------W-to-22XCORESO------S.zip"
+    crac: "(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})-F301-v(?<version>[0-9])-17XTSO-CS------W-to-22XCORESO------S.xml"
+    glsk: "(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})-F319-v(?<version>[0-9])-17XTSO-CS------W-to-22XCORESO------S.xml"
+    refprog: "(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})-F120-v(?<version>[0-9])-17XTSO-CS------W-to-22XCORESO------S.xml"
+    virtualhubs: "(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})-F327-v(?<version>[0-9])-17XTSO-CS------W-to-22XCORESO------S.xml"
+  configuration:
+    rao-parameters: "/config/rao-config.json"
+  filesystem:
+    tmp-output-directory: ${java.io.tmpdir}/tmp-output-directory

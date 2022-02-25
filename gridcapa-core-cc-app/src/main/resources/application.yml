@@ -1,0 +1,73 @@
+server:
+  port: 9090
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    url: jdbc:h2:file:${HOME}/rao-integration/database
+    driverClassName: org.h2.Driver
+    username: farao
+    password: farao
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        handleTaskLogEventUpdate-in-0:
+          destination: rao-runner-logs-exchange
+      rabbit:
+        default:
+          consumer:
+            auto-bind-dlq: true
+            max-attempts: 1
+    function:
+      definition: handleTaskLogEventUpdate
+
+minio:
+  default-bucket: "rao-integration-data"
+  outputs-bucket: "rao-integration-outputs"
+  access:
+    name: minioadmin
+    secret: minioadmin
+  url: http://localhost:9000/
+rao-runner-server:
+  amqp:
+    client-app-id: rao-integration
+    expiration: 5400000 # 1h30min (90*60*1000), same as time-out
+                        # take it quite large, as rao-runner might not prefetch more than one rao-request. Rao-request
+                        # must therefore stay in queue until a rao-runner is free, or until the time-out is reached
+    queue-name: raoi-request-queue
+
+rao-integration:
+  async-time-out: 4500000 # 1h15min (75*60*1000)
+  url:
+    whitelist:
+      - http://localhost:9000
+  expected-inputs:  # expected business types in file names
+    business-type-prefix: "CORESO-F"
+    rao-request: "CORESO-F302"
+    crac: "CORESO-F301"
+    glsk: "CORESO-F319"
+    refprog: "CORESO-F120"
+    virtualhubs: "CORESO-F327"
+    cgms: "CORESO-F119"
+    cgms-header: "^.*\\.(xml)$"  # expected inside cgm zip
+  original-inputs-dir: "ORIGINAL_INPUTS"
+  working-dir: "RAO_WORKING_DIR"
+  outputs-dir: "RAO_OUTPUTS_DIR"
+  configuration:
+    rao-parameters: "/config/rao-config.json"
+  filesystem:
+    tmp-output-directory: ${HOME}/tmp-output-directory   # do not put it in /tmp/ directory to avoid uncontrolled deletion instant

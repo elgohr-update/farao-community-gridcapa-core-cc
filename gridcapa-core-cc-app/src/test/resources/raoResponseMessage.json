@@ -1,0 +1,14 @@
+{
+  "data": {
+    "type": "rao-response",
+    "id": "id",
+    "attributes": {
+      "instant": "instant",
+      "networkWithPraFileUrl": "networkWithPraFileUrl",
+      "cracFileUrl": "cracFileUrl",
+      "raoResultFileUrl": "raoResultFileUrl",
+      "computationStartInstant": 1637052884.944727,
+      "computationEndInstant": 1647057884.934927
+    }
+  }
+}

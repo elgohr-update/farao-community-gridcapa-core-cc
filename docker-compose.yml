@@ -1,0 +1,25 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.8.14-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  minio:
+    image: minio/minio:RELEASE.2021-06-17T00-10-46Z.fips
+    ports:
+      - "9000:9000"
+    command: server /data
+
+  sftp:
+    hostname: sftp
+    image: atmoz/sftp
+    volumes:
+      - raoi-data:/home/raoi
+    ports:
+      - "2222:22"
+    environment:
+      SFTP_USERS: raoi:passraoi:::data
+
+volumes:
+  raoi-data:

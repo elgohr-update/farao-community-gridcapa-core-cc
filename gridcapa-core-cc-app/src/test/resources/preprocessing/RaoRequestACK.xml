@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ResponseMessage xmlns="http://iec.ch/TC57/2011/schema/message" xmlns:ns2="http://unicorn.com/Response/response-payload" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <Verb>reply</Verb>
+        <Noun>OptimizedRemedialActions</Noun>
+        <Revision>1</Revision>
+        <Context>PRODUCTION</Context>
+        <Timestamp>2019-04-06T15:41:47.00Z</Timestamp>
+        <Source>22XCORESO------S</Source>
+        <MessageID>22XCORESO------S-20200330-F302-ACK</MessageID>
+        <CorrelationID>e880ff7e-8d81-4f89-86b0-e3276e9d9476</CorrelationID>
+    </Header>
+    <Reply>
+        <Result>OK</Result>
+    </Reply>
+</ResponseMessage>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequestMessage xsi:noNamespaceSchemaLocation="common-message-specification-01.xsd" xmlns="http://iec.ch/TC57/2011/schema/message" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+	<Verb>create</Verb>
+	<Noun>OptimizedRemedialActions</Noun>
+	<Revision>1</Revision>
+	<Context>PRODUCTION</Context>
+	<Timestamp>2019-04-06T15:41:47.00Z</Timestamp>
+	<Source>17XTSO-CS------W</Source>
+	<AsyncReplyFlag>true</AsyncReplyFlag>
+	<ReplyAddress>17XTSO-CS------W</ReplyAddress>
+	<AckRequired>true</AckRequired>
+	<MessageID>e880ff7e-8d81-4f89-86b0-e3276e9d9476</MessageID>
+	<CorrelationID>e880ff7e-8d81-4f89-86b0-e3276e9d9476</CorrelationID>
+	<!--Parameters common for all Control areas-->
+	<Property>
+		<Name>Topo_RA_Min_impact</Name>
+		<Value>999</Value>
+	</Property>
+	<Property>
+		<Name>PST_RA_Min_impact</Name>
+		<Value>999</Value>
+	</Property>
+	<!--Parameters per Control Area-->
+	<!--LF_Constraint-->
+	<Property>
+		<Name>LF_Constraint_BE</Name>
+		<Value>false</Value>
+	</Property>
+	<Property>
+		<Name>LF_Constraint_FR</Name>
+		<Value>true</Value>
+	</Property>
+	<Property>
+		<Name>LF_Constraint_NL</Name>
+		<Value>false</Value>
+	</Property>
+	<!--LF_Constraint end-->
+	<!--Max_cRA-->
+	<Property>
+		<Name>Max_cRA_BE</Name>
+		<Value>999</Value>
+	<Property>
+		<Name>Max_cRA_FR</Name>
+		<Value>999</Value>
+	</Property>
+	<Property>
+		<Name>Max_cRA_NL</Name>
+		<Value>999</Value>
+	</Property>
+
+	<!--Max_cRA end-->
+	<!--Max_Topo_cRA-->
+	<Property>
+		<Name>Max_Topo_cRA_BE</Name>
+		<Value>999</Value>
+	</Property>
+	<Property>
+		<Name>Max_Topo_cRA_FR</Name>
+		<Value>999</Value>
+	</Property>
+	<Property>
+		<Name>Max_Topo_cRA_NL</Name>
+		<Value>999</Value>
+	</Property>
+
+	<!--Max_Topo_cRA end-->
+	<!--Max_PST_cRA-->
+	<Property>
+		<Name>Max_PST_cRA_BE</Name>
+		<Value>999</Value>
+	</Property>
+	<Property>
+		<Name>Max_PST_cRA_FR</Name>
+		<Value>999</Value>
+	</Property>
+	<Property>
+		<Name>Max_PST_cRA_NL</Name>
+		<Value>999</Value>
+	</Property>
+
+	<!--Max_PST_cRA end-->
+</Header>
+<Payload>
+	<req:RequestItems timeInterval="2020-03-29T22:00:00Z/2020-03-30T22:00:00Z" xsi:noNamespaceSchemaLocation="request-payload-01.xsd" xmlns:req="http://unicorn.com/Request/request-payload" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <req:RequestItem timeInterval="2020-03-29T22:00Z/2020-03-29T23:00Z">
+      <req:Files>
+        <req:File code="CGM" url="documentIdentification://17XTSO-CS------W-20200330F119v1"/>
+        <req:File code="REFPROG" url="documentIdentification://17XTSO-CS------W-20200330F120v1"/>
+        <req:File code="CB" url="documentIdentification://17XTSO-CS------W-20200330F301v2"/>
+        <req:File code="GLSK" url="documentIdentification://17XTSO-CS------W-20200330F319v1"/>
+      </req:Files>
+    </req:RequestItem>
+    <req:RequestItem timeInterval="2020-03-29T23:00Z/2020-03-30T00:00Z">
+      <req:Files>
+        <req:File code="CGM" url="documentIdentification://17XTSO-CS------W-20200330F119v1"/>
+        <req:File code="REFPROG" url="documentIdentification://17XTSO-CS------W-20200330F120v1"/>
+        <req:File code="CB" url="documentIdentification://17XTSO-CS------W-20200330F301v2"/>
+        <req:File code="GLSK" url="documentIdentification://17XTSO-CS------W-20200330F319v1"/>
+      </req:Files>
+    </req:RequestItem>
+    <req:RequestItem timeInterval="2020-03-30T00:00Z/2020-03-30T01:00Z">
+      <req:Files>
+        <req:File code="CGM" url="documentIdentification://17XTSO-CS------W-20200330F119v1"/>
+        <req:File code="REFPROG" url="documentIdentification://17XTSO-CS------W-20200330F120v1"/>
+        <req:File code="CB" url="documentIdentification://17XTSO-CS------W-20200330F301v2"/>
+        <req:File code="GLSK" url="documentIdentification://17XTSO-CS------W-20200330F319v1"/>
+      </req:Files>
+    </req:RequestItem>
+	</req:RequestItems>
+</Payload>
+</RequestMessage>
