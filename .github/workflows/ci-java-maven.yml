@@ -1,9 +1,6 @@
 name: CI - gridcapa-core-cc
 
-on:
-  push:
-    branches-ignore:
-      - master
+on: [push]
 
 jobs:
   build:
