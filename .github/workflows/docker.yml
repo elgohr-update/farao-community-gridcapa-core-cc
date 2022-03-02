@@ -2,9 +2,7 @@ name: DOCKER
 
 on:
   release:
-    types:
-      - created
-      - edited
+    types: [published]
 
 jobs:
   build:
@@ -12,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get the release version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Get the release version
+        id: get_version
+        run: |
+          VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+          echo "::set-output name=version::$VERSION"
 
       - name: Set up JDK 11
         uses: actions/setup-java@v1
@@ -34,6 +32,5 @@ jobs:
         with:
           name: farao/gridcapa-core-cc
           tags: ${{ steps.get_version.outputs.VERSION }}
-          dockerfile: DockerFile
           username: farao
           password: ${{ secrets.DOCKERHUB_TOKEN }}
