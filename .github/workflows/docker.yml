@@ -28,7 +28,7 @@ jobs:
         run: mvn --batch-mode -Pdefault,coverage install
 
       - name: Build and publish docker image
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: farao/gridcapa-core-cc
           tags: ${{ steps.get_version.outputs.VERSION }}
